@@ -99,7 +99,7 @@ INSERT INTO `doctor` (`docid`, `docemail`, `docname`, `docpassword`, `docnic`, `
 -- Table structure for table `patient`
 --
 
-DROP TABLE IF EXISTS `patient`;
+/*DROP TABLE IF EXISTS `patient`;
 CREATE TABLE IF NOT EXISTS `patient` (
   `pid` int(11) NOT NULL AUTO_INCREMENT,
   `pemail` varchar(255) DEFAULT NULL,
@@ -111,10 +111,49 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `ptel` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`pid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
+*/
 --
 -- Dumping data for table `patient`
 --
+--actualizacion estructura tabla patient
+DROP TABLE IF EXISTS `patient`;
+CREATE TABLE IF NOT EXISTS `patient` (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `apaterno` varchar(100) NOT NULL,
+  `amaterno` varchar(100) NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `dob` date NOT NULL,
+  `edad` int(3) NOT NULL,
+  `sexo` enum('M','F','O') NOT NULL,
+  `estado_civil` enum('soltero','casado','union_libre','divorciado','viudo') NOT NULL,
+  `ocupacion` varchar(255) NOT NULL,
+  `calle` varchar(255) NOT NULL,
+  `numero` varchar(10) NOT NULL,
+  `colonia` varchar(255) NOT NULL,
+  `cp` varchar(10) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `estado` varchar(100) NOT NULL,
+  `telefono_cel` varchar(15) NOT NULL,
+  `telefono_fijo` varchar(15),
+  `email` varchar(255) NOT NULL,
+  `curp` varchar(18) NOT NULL,
+  `nss` varchar(11),
+  `tutor_nombre` varchar(255),
+  `tutor_parentesco` varchar(50),
+  `emergencia_nombre` varchar(255) NOT NULL,
+  `emergencia_telefono` varchar(15) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pid`),
+  UNIQUE KEY `curp_unique` (`curp`),
+  UNIQUE KEY `email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Modificar la tabla webuser para mantener la relación con patient
+ALTER TABLE `webuser` 
+ADD CONSTRAINT `fk_webuser_patient` 
+FOREIGN KEY (`email`) REFERENCES `patient` (`email`) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;
 
 INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`, `pdob`, `ptel`) VALUES
 (1, 'patient@edoc.com', 'Test Patient', '123', 'Sri Lanka', '0000000000', '2000-01-01', '0120000000'),
