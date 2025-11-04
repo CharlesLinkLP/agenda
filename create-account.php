@@ -27,7 +27,7 @@ $_SESSION["user"]="";
 $_SESSION["usertype"]="";
 
 // Set the new timezone
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('America/Mexico_City');
 $date = date('Y-m-d');
 
 $_SESSION["date"]=$date;
@@ -97,50 +97,50 @@ if($_POST){
         <table border="0" style="width: 69%;">
             <tr>
                 <td colspan="2">
-                    <p class="header-text">Let's Get Started</p>
-                    <p class="sub-text">It's Okey, Now Create User Account.</p>
+                    <p class="header-text">¡Empecemos!</p>
+                    <p class="sub-text">Ahora, crea tu cuenta.</p>
                 </td>
             </tr>
             <tr>
                 <form action="" method="POST" >
                 <td class="label-td" colspan="2">
-                    <label for="newemail" class="form-label">Email: </label>
+                    <label for="newemail" class="form-label">Correo: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="email" name="newemail" class="input-text" placeholder="Email Address" required>
+                    <input type="email" name="newemail" class="input-text" placeholder="Dirección de correo" required>
                 </td>
                 
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="tele" class="form-label">Mobile Number: </label>
+                    <label for="tele" class="form-label">Número de teléfono: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="tel" name="tele" class="input-text"  placeholder="ex: 0712345678" pattern="[0]{1}[0-9]{9}" >
+                    <input type="tel" name="tele" class="input-text"  placeholder="ejem: 5566779900" pattern="[0]{1}[0-9]{9}" >
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="newpassword" class="form-label">Create New Password: </label>
+                    <label for="newpassword" class="form-label">Crear Contraseña: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="newpassword" class="input-text" placeholder="New Password" required>
+                    <input type="password" name="newpassword" class="input-text" placeholder="Nueva Contraseña" required>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <label for="cpassword" class="form-label">Conform Password: </label>
+                    <label for="cpassword" class="form-label">Confirmar Contraseña: </label>
                 </td>
             </tr>
             <tr>
                 <td class="label-td" colspan="2">
-                    <input type="password" name="cpassword" class="input-text" placeholder="Conform Password" required>
+                    <input type="password" name="cpassword" class="input-text" placeholder="Confirmar Contraseña" required>
                 </td>
             </tr>
      
@@ -154,18 +154,18 @@ if($_POST){
             
             <tr>
                 <td>
-                    <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >
+                    <input type="reset" value="Restaurar" class="login-btn btn-primary-soft btn" >
                 </td>
                 <td>
-                    <input type="submit" value="Sign Up" class="login-btn btn-primary btn">
+                    <input type="submit" value="Registrate" class="login-btn btn-primary btn">
                 </td>
 
             </tr>
             <tr>
                 <td colspan="2">
                     <br>
-                    <label for="" class="sub-text" style="font-weight: 280;">Already have an account&#63; </label>
-                    <a href="login.php" class="hover-link1 non-style-link">Login</a>
+                    <label for="" class="sub-text" style="font-weight: 280;">&#191; Ya tienes una cuenta&#63; </label>
+                    <a href="login.php" class="hover-link1 non-style-link">Inicia sesión</a>
                     <br><br><br>
                 </td>
             </tr>

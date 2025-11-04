@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
-    <link rel="stylesheet" href="../css/signup.css">
-        
+    <link rel="stylesheet" href="../css/signup.css"> 
     <title>Creacion de expediente</title>
     
 </head>
@@ -140,7 +139,7 @@ if($_POST){
                     </td>
                     <td class="label-td">
                         <label class="form-label">Edad: </label>
-                        <input type="number" name="edad" class="input-text" placeholder="Años cumplidos" required>
+                        <input type="number" name="edad" class="input-text" placeholder="Años cumplidos">
                     </td>
                 </tr>
 
@@ -148,7 +147,7 @@ if($_POST){
                 <tr>
                     <td class="label-td">
                         <label class="form-label">Sexo: </label>
-                        <select name="sexo" class="input-text" required>
+                        <select name="sexo" class="input-text">
                             <option value="">Seleccione...</option>
                             <option value="M">Masculino</option>
                             <option value="F">Femenino</option>
@@ -157,7 +156,7 @@ if($_POST){
                     </td>
                     <td class="label-td">
                         <label class="form-label">Estado Civil: </label>
-                        <select name="estado_civil" class="input-text" required>
+                        <select name="estado_civil" class="input-text">
                             <option value="">Seleccione...</option>
                             <option value="soltero">Soltero(a)</option>
                             <option value="casado">Casado(a)</option>
@@ -172,7 +171,7 @@ if($_POST){
                 <tr>
                     <td class="label-td" colspan="2">
                         <label class="form-label">Ocupación: </label>
-                        <input type="text" name="ocupacion" class="input-text" placeholder="Actividad principal" required>
+                        <input type="text" name="ocupacion" class="input-text" placeholder="Actividad principal">
                     </td>
                 </tr>
 
@@ -184,26 +183,26 @@ if($_POST){
                 </tr>
                 <tr>
                     <td class="label-td">
-                        <input type="text" name="calle" class="input-text" placeholder="Calle" required>
+                        <input type="text" name="calle" class="input-text" placeholder="Calle">
                     </td>
                     <td class="label-td">
-                        <input type="text" name="numero" class="input-text" placeholder="Número" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <input type="text" name="colonia" class="input-text" placeholder="Colonia" required>
-                    </td>
-                    <td class="label-td">
-                        <input type="text" name="cp" class="input-text" placeholder="Código Postal" required>
+                        <input type="text" name="numero" class="input-text" placeholder="Número">
                     </td>
                 </tr>
                 <tr>
                     <td class="label-td">
-                        <input type="text" name="ciudad" class="input-text" placeholder="Ciudad" required>
+                        <input type="text" name="colonia" class="input-text" placeholder="Colonia">
                     </td>
                     <td class="label-td">
-                        <input type="text" name="estado" class="input-text" placeholder="Estado" required>
+                        <input type="text" name="cp" class="input-text" placeholder="Código Postal">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-td">
+                        <input type="text" name="ciudad" class="input-text" placeholder="Ciudad">
+                    </td>
+                    <td class="label-td">
+                        <input type="text" name="estado" class="input-text" placeholder="Estado">
                     </td>
                 </tr>
 
@@ -211,7 +210,7 @@ if($_POST){
                 <tr>
                     <td class="label-td">
                         <label class="form-label">Teléfono Celular: </label>
-                        <input type="tel" name="telefono_cel" class="input-text" placeholder="Celular" required>
+                        <input type="tel" name="telefono_cel" class="input-text" placeholder="Celular">
                     </td>
                     <td class="label-td">
                         <label class="form-label">Teléfono Fijo: </label>
@@ -223,7 +222,7 @@ if($_POST){
                 <tr>
                     <td class="label-td" colspan="2">
                         <label class="form-label">Correo electrónico: </label>
-                        <input type="email" name="email" class="input-text" placeholder="correo@ejemplo.com" required>
+                        <input type="email" name="email" class="input-text" placeholder="correo@ejemplo.com">
                     </td>
                 </tr>
                 <tr>
@@ -253,7 +252,7 @@ if($_POST){
                 <tr>
                     <td class="label-td">
                         <label class="form-label">Contacto de emergencia: </label>
-                        <input type="text" name="emergencia_nombre" class="input-text" placeholder="Nombre" required>
+                        <input type="text" name="emergencia_nombre" class="input-text" placeholder="Nombre">
                     </td>
                     <td class="label-td">
                         <label class="form-label">Teléfono: </label>
