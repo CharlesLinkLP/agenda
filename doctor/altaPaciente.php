@@ -91,11 +91,24 @@ if($_POST){
             $stmt = $database->prepare($sqlwebuser);
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            // Usar ruta absoluta para la redirección
-            header('Location: index.php');
+
+
+// Guardar datos en sesión para que generar_pdf.php los use
+            $_SESSION['pdf_patient'] = [
+                'apaterno'=>$apaterno,'amaterno'=>$amaterno,'nombres'=>$nombres,
+                'dob'=>$dob,'edad'=>$edad,'sexo'=>$sexo,'estado_civil'=>$estado_civil,
+                'ocupacion'=>$ocupacion,'calle'=>$calle,'numero'=>$numero,'colonia'=>$colonia,
+                'cp'=>$cp,'ciudad'=>$ciudad,'estado'=>$estado,'telefono_cel'=>$telefono_cel,
+                'telefono_fijo'=>$telefono_fijo,'email'=>$email,'curp'=>$curp,'nss'=>$nss,
+                'tutor_nombre'=>$tutor_nombre,'tutor_parentesco'=>$tutor_parentesco,
+                'emergencia_nombre'=>$emergencia_nombre,'emergencia_telefono'=>$emergencia_telefono
+            ];
+
+            // Redirigir al generador de PDF (script independiente, sin salida previa)
+            header('Location: /agenda/tcpdf/generar_pdf.php');
             exit();
         } else {
-            $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Error al guardar los datos. Intente nuevamente.</label>';
+            $error = 'Error al guardar los datos. Intente nuevamente.';
         }
     }
 }
