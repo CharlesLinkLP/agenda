@@ -151,8 +151,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Modificar la tabla webuser para mantener la relación con patient
 ALTER TABLE `webuser` 
 ADD CONSTRAINT `fk_webuser_patient` 
-FOREIGN KEY (`email`) REFERENCES `patient` (`email`) 
-ON DELETE CASCADE 
+FOREIGN KEY (`email`) REFERENCES `patient` (`email`)
 ON UPDATE CASCADE;
 
 INSERT INTO `patient` (`pid`, `pemail`, `pname`, `ppassword`, `paddress`, `pnic`, `pdob`, `ptel`) VALUES

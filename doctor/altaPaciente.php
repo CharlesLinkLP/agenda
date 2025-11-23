@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/signup.css"> 
+    <script src="../js/multistep.js"></script>
     <title>Creacion de expediente</title>
     
 </head>
@@ -164,7 +165,6 @@ if($_POST){
                             <option value="">Seleccione...</option>
                             <option value="M">Masculino</option>
                             <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
                         </select>
                     </td>
                     <td class="label-td">

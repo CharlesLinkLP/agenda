@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost"; // db
+$servername = "localhost";
 $username = "root";  
 $password = ""; 
 $dbname = "edoc"; 
@@ -10,4 +10,3 @@ if ($database->connect_error) {
     die("Échec de la connexion : " . $database->connect_error);
 }
 ?>
-
