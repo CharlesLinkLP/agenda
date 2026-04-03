@@ -31,9 +31,6 @@ $_SESSION["date"]=$date;
 
 
 if($_POST){
-
-    
-
     $_SESSION["personal"]=array(
         'fname'=>$_POST['fname'],
         'lname'=>$_POST['lname'],
@@ -45,10 +42,6 @@ if($_POST){
 
     print_r($_SESSION["personal"]);
     header("location: create-account.php");
-
-
-
-
 }
 
 ?>
@@ -71,10 +64,10 @@ if($_POST){
             </tr>
             <tr>
                 <td class="label-td">
-                    <input type="text" name="fname" class="input-text" placeholder="Nombre" required>
+                    <input type="text" name="fname" class="input-text" placeholder="Nombre(s)" required>
                 </td>
                 <td class="label-td">
-                    <input type="text" name="lname" class="input-text" placeholder="Apellido" required>
+                    <input type="text" name="lname" class="input-text" placeholder="Apellidos" required>
                 </td>
             </tr>
             <tr>
@@ -125,7 +118,7 @@ if($_POST){
                 <td colspan="2">
                     <br>
                     <label for="" class="sub-text" style="font-weight: 280;">&#191;Ya tienes una cuenta&#63; </label>
-                    <a href="login.php" class="hover-link1 non-style-link">Inicias Sesión</a>
+                    <a href="login.php" class="hover-link1 non-style-link">Inicia Sesión</a>
                     <br><br><br>
                 </td>
             </tr>
