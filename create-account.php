@@ -14,6 +14,7 @@
             animation: transitionIn-X 0.5s;
         }
     </style>
+    <script src="js/multistep.js"></script>
 </head>
 <body>
 <?php
@@ -94,87 +95,42 @@ if($_POST){
 
     <center>
     <div class="container">
-        <table border="0" style="width: 69%;">
-            <tr>
-                <td colspan="2">
-                    <p class="header-text">¡Empecemos!</p>
-                    <p class="sub-text">Ahora, crea tu cuenta.</p>
-                </td>
-            </tr>
-            <tr>
-                <form action="" method="POST" >
-                <td class="label-td" colspan="2">
-                    <label for="newemail" class="form-label">Correo: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="email" name="newemail" class="input-text" placeholder="Dirección de correo" required>
-                </td>
-                
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <label for="tele" class="form-label">Número de teléfono: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="tel" name="tele" class="input-text"  placeholder="ejem: 5566779900" pattern="[0-9]{10}" >
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <label for="newpassword" class="form-label">Crear Contraseña: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="password" name="newpassword" class="input-text" placeholder="Nueva Contraseña" required>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <label for="cpassword" class="form-label">Confirmar Contraseña: </label>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-td" colspan="2">
-                    <input type="password" name="cpassword" class="input-text" placeholder="Confirmar Contraseña" required>
-                </td>
-            </tr>
-     
-            <tr>
-                
-                <td colspan="2">
-                    <?php echo $error ?>
+        <ul id="progressbar">
+            <li class="active">Paso 1</li>
+            <li>Paso 2</li>
+            <li>Paso 3</li>
+        </ul>
+        <form action="" method="POST">
+            <!-- Paso 1 -->
+            <fieldset>
+                <h2 class="fs-title">Información Personal</h2>
+                <h3 class="fs-subtitle">Introduce tus datos personales</h3>
+                <input type="email" name="newemail" class="input-text" placeholder="Dirección de correo" required>
+                <input type="tel" name="tele" class="input-text" placeholder="ejem: 5566779900" pattern="[0-9]{10}" required>
+                <input type="button" name="next" class="next action-button" value="Siguiente">
+            </fieldset>
 
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <input type="reset" value="Restaurar" class="login-btn btn-primary-soft btn" >
-                </td>
-                <td>
-                    <input type="submit" value="Registrate" class="login-btn btn-primary btn">
-                </td>
+            <!-- Paso 2 -->
+            <fieldset>
+                <h2 class="fs-title">Seguridad</h2>
+                <h3 class="fs-subtitle">Crea una contraseña segura</h3>
+                <input type="password" name="newpassword" class="input-text" placeholder="Nueva Contraseña" required>
+                <input type="password" name="cpassword" class="input-text" placeholder="Confirmar Contraseña" required>
+                <input type="button" name="previous" class="previous action-button" value="Anterior">
+                <input type="button" name="next" class="next action-button" value="Siguiente">
+            </fieldset>
 
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <br>
-                    <label for="" class="sub-text" style="font-weight: 280;">&#191; Ya tienes una cuenta&#63; </label>
-                    <a href="login.php" class="hover-link1 non-style-link">Inicia sesión</a>
-                    <br><br><br>
-                </td>
-            </tr>
-
-                    </form>
-            </tr>
-        </table>
-
+            <!-- Paso 3 -->
+            <fieldset>
+                <h2 class="fs-title">Confirmación</h2>
+                <h3 class="fs-subtitle">Revisa y confirma tus datos</h3>
+                <p>Correo: <span id="email-review"></span></p>
+                <p>Teléfono: <span id="tele-review"></span></p>
+                <input type="button" name="previous" class="previous action-button" value="Anterior">
+                <input type="submit" name="submit" class="submit action-button" value="Registrarse">
+            </fieldset>
+        </form>
     </div>
-</center>
+    </center>
 </body>
 </html>

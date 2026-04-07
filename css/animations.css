@@ -42,4 +42,15 @@
 }
     
 
+@keyframes transitionOut-X {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+}
+
 /* Transition end */

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/animations.css">  
     <link rel="stylesheet" href="../css/main.css">  
     <link rel="stylesheet" href="../css/signup.css"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/multistep.js"></script>
     <title>Creacion de expediente</title>
     
@@ -34,6 +35,7 @@ $_SESSION["date"]=$date;
 
 require_once("../connection.php");
 if($_POST){
+    error_log("Datos recibidos: " . print_r($_POST, true)); // Registro de depuración
     // Obtener los datos del formulario
     $apaterno = $_POST['apaterno'];
     $amaterno = $_POST['amaterno'];
@@ -75,7 +77,7 @@ if($_POST){
             ocupacion, calle, numero, colonia, cp, ciudad, estado,
             telefono_cel, telefono_fijo, email, curp, nss,
             tutor_nombre, tutor_parentesco, emergencia_nombre, emergencia_telefono
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Preparar y ejecutar la consulta
         $stmt = $database->prepare($sqlinsert);
@@ -117,173 +119,160 @@ if($_POST){
 
     <center>
     <div class="container">
-        <table border="0">
-            <tr>
-                <td colspan="2">
-                    <p class="header-text">Expediente</p>
-                    <p class="sub-text">Agrega tus datos personales para continuar</p>
-                </td>
-            </tr>
-            <form action="" method="POST" >
-                <!-- Nombre completo -->
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <label class="form-label">Nombre completo: </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <input type="text" name="apaterno" class="input-text" placeholder="Apellido Paterno" required>
-                    </td>
-                    <td class="label-td">
-                        <input type="text" name="amaterno" class="input-text" placeholder="Apellido Materno" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <input type="text" name="nombres" class="input-text" placeholder="Nombre(s)" required>
-                    </td>
-                </tr>
+        <ul id="progressbar">
+            <li class="active">Datos Personales</li>
+            <li>Datos Adicionales</li>
+        </ul>
+        <form id="msform" action="" method="POST">
+            <!-- Paso 1: Datos Personales -->
+            <fieldset>
+                <h2 class="fs-title">Datos Personales</h2>
+                <h3 class="fs-subtitle">Introduce tus datos personales</h3>
+                <table border="0">
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="nombres" class="form-label">Nombre(s):</label>
+                            <input type="text" name="nombres" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="apaterno" class="form-label">Apellido Paterno:</label>
+                            <input type="text" name="apaterno" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="amaterno" class="form-label">Apellido Materno:</label>
+                            <input type="text" name="amaterno" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="dob" class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" name="dob" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="edad" class="form-label">Edad:</label>
+                            <input type="number" name="edad" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="sexo" class="form-label">Sexo:</label>
+                            <select name="sexo" class="input-text" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </td>
+                        <td class="label-td">
+                            <label for="estado_civil" class="form-label">Estado Civil:</label>
+                            <select name="estado_civil" class="input-text" required>
+                                <option value="Soltero">Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Divorciado">Divorciado</option>
+                                <option value="Viudo">Viudo</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="ocupacion" class="form-label">Ocupación:</label>
+                            <input type="text" name="ocupacion" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="calle" class="form-label">Calle:</label>
+                            <input type="text" name="calle" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="numero" class="form-label">Número:</label>
+                            <input type="text" name="numero" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="colonia" class="form-label">Colonia:</label>
+                            <input type="text" name="colonia" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="cp" class="form-label">Código Postal:</label>
+                            <input type="text" name="cp" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="ciudad" class="form-label">Ciudad:</label>
+                            <input type="text" name="ciudad" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="estado" class="form-label">Estado:</label>
+                            <input type="text" name="estado" class="input-text" required>
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" name="next" class="next action-button" value="Siguiente">
+            </fieldset>
 
-                <!-- Fecha de nacimiento y edad -->
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">Fecha de nacimiento: </label>
-                        <input type="date" name="dob" class="input-text" required>
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">Edad: </label>
-                        <input type="number" name="edad" class="input-text" placeholder="Años cumplidos">
-                    </td>
-                </tr>
-
-                <!-- Sexo y Estado Civil -->
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">Sexo: </label>
-                        <select name="sexo" class="input-text">
-                            <option value="">Seleccione...</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                        </select>
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">Estado Civil: </label>
-                        <select name="estado_civil" class="input-text">
-                            <option value="">Seleccione...</option>
-                            <option value="soltero">Soltero(a)</option>
-                            <option value="casado">Casado(a)</option>
-                            <option value="union_libre">Unión Libre</option>
-                            <option value="divorciado">Divorciado(a)</option>
-                            <option value="viudo">Viudo(a)</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <!-- Ocupación -->
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <label class="form-label">Ocupación: </label>
-                        <input type="text" name="ocupacion" class="input-text" placeholder="Actividad principal">
-                    </td>
-                </tr>
-
-                <!-- Domicilio -->
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <label class="form-label">Domicilio: </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <input type="text" name="calle" class="input-text" placeholder="Calle">
-                    </td>
-                    <td class="label-td">
-                        <input type="text" name="numero" class="input-text" placeholder="Número">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <input type="text" name="colonia" class="input-text" placeholder="Colonia">
-                    </td>
-                    <td class="label-td">
-                        <input type="text" name="cp" class="input-text" placeholder="Código Postal">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <input type="text" name="ciudad" class="input-text" placeholder="Ciudad">
-                    </td>
-                    <td class="label-td">
-                        <input type="text" name="estado" class="input-text" placeholder="Estado">
-                    </td>
-                </tr>
-
-                <!-- Teléfonos -->
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">Teléfono Celular: </label>
-                        <input type="tel" name="telefono_cel" class="input-text" placeholder="Celular">
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">Teléfono Fijo: </label>
-                        <input type="tel" name="telefono_fijo" class="input-text" placeholder="Fijo">
-                    </td>
-                </tr>
-
-                <!-- Email, CURP y NSS -->
-                <tr>
-                    <td class="label-td" colspan="2">
-                        <label class="form-label">Correo electrónico: </label>
-                        <input type="email" name="email" class="input-text" placeholder="correo@ejemplo.com">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">CURP: </label>
-                        <input type="text" name="curp" class="input-text" placeholder="CURP" required>
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">NSS: </label>
-                        <input type="text" name="nss" class="input-text" placeholder="Número de Seguro Social">
-                    </td>
-                </tr>
-
-                <!-- Tutor -->
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">Nombre del tutor: </label>
-                        <input type="text" name="tutor_nombre" class="input-text" placeholder="Nombre completo">
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">Parentesco: </label>
-                        <input type="text" name="tutor_parentesco" class="input-text" placeholder="Parentesco">
-                    </td>
-                </tr>
-
-                <!-- Contacto de emergencia -->
-                <tr>
-                    <td class="label-td">
-                        <label class="form-label">Contacto de emergencia: </label>
-                        <input type="text" name="emergencia_nombre" class="input-text" placeholder="Nombre">
-                    </td>
-                    <td class="label-td">
-                        <label class="form-label">Teléfono: </label>
-                        <input type="tel" name="emergencia_telefono" class="input-text" placeholder="Teléfono" required>
-                    </td>
-                </tr>
-
-                <!-- Botones -->
-                <tr>
-                    <td>
-                        <input type="reset" value="Reset" class="login-btn btn-primary-soft btn" >
-                    </td>
-                    <td>
-                        <input type="submit" value="Next" class="login-btn btn-primary btn">
-                    </td>
-                </tr>
-            </form>
-        </table>
+            <!-- Paso 2: Datos Adicionales -->
+            <fieldset>
+                <h2 class="fs-title">Datos Adicionales</h2>
+                <h3 class="fs-subtitle">Introduce los datos restantes</h3>
+                <table border="0">
+                    <tr>
+                        <td class="label-td">
+                            <label for="telefono_cel" class="form-label">Teléfono Celular:</label>
+                            <input type="text" name="telefono_cel" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="telefono_fijo" class="form-label">Teléfono Fijo:</label>
+                            <input type="text" name="telefono_fijo" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="email" class="form-label">Correo Electrónico:</label>
+                            <input type="email" name="email" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="curp" class="form-label">CURP:</label>
+                            <input type="text" name="curp" class="input-text" required>
+                        </td>
+                        <td class="label-td">
+                            <label for="nss" class="form-label">NSS:</label>
+                            <input type="text" name="nss" class="input-text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="tutor_nombre" class="form-label">Nombre del Tutor:</label>
+                            <input type="text" name="tutor_nombre" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">
+                            <label for="tutor_parentesco" class="form-label">Parentesco del Tutor:</label>
+                            <input type="text" name="tutor_parentesco" class="input-text">
+                        </td>
+                        <td class="label-td">
+                            <label for="emergencia_nombre" class="form-label">Contacto de Emergencia:</label>
+                            <input type="text" name="emergencia_nombre" class="input-text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td" colspan="2">
+                            <label for="emergencia_telefono" class="form-label">Teléfono de Emergencia:</label>
+                            <input type="text" name="emergencia_telefono" class="input-text">
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" name="previous" class="previous action-button" value="Anterior">
+                <input type="submit" name="submit" class="submit action-button" value="Guardar">
+            </fieldset>
+        </form>
     </div>
     </center>
 </body>

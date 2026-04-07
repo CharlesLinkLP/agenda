@@ -11,33 +11,48 @@ $(".next").click(function () {
     current_fs = $(this).parent(); // Fieldset actual
     next_fs = $(this).parent().next(); // Siguiente fieldset
 
-    // Activar el siguiente paso en la barra de progreso
-    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    // Guardar los datos del formulario del paso actual
+    var formData = $("#msform").serialize();
+    $.ajax({
+        url: "altaPaciente.php", // Enviar los datos al mismo archivo PHP
+        type: "POST",
+        data: formData,
+        success: function (response) {
+            console.log("Datos guardados: ", response);
 
-    // Mostrar el siguiente fieldset
-    next_fs.show();
+            // Activar el siguiente paso en la barra de progreso
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
-    // Ocultar el fieldset actual con animación
-    current_fs.animate({ opacity: 0 }, {
-        step: function (now, mx) {
-            // Reducir la escala del fieldset actual
-            scale = 1 - (1 - now) * 0.2;
-            // Mover el siguiente fieldset desde la derecha
-            left = (now * 50) + "%";
-            // Incrementar la opacidad del siguiente fieldset
-            opacity = 1 - now;
-            current_fs.css({
-                'transform': 'scale(' + scale + ')',
-                'position': 'absolute'
+            // Mostrar el siguiente fieldset
+            next_fs.show();
+
+            // Ocultar el fieldset actual con animación
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now, mx) {
+                    // Reducir la escala del fieldset actual
+                    scale = 1 - (1 - now) * 0.2;
+                    // Mover el siguiente fieldset desde la derecha
+                    left = (now * 50) + "%";
+                    // Incrementar la opacidad del siguiente fieldset
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({ 'left': left, 'opacity': opacity });
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack' // Efecto de animación
             });
-            next_fs.css({ 'left': left, 'opacity': opacity });
         },
-        duration: 800,
-        complete: function () {
-            current_fs.hide();
+        error: function (xhr, status, error) {
+            console.error("Error al guardar los datos: ", error);
             animating = false;
-        },
-        easing: 'easeInOutBack' // Efecto de animación
+        }
     });
 });
 

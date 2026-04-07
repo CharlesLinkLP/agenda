@@ -281,7 +281,7 @@ input[type=search]:focus {
   height: 30px;
   border: 1px solid #e9ecef;
   font-size: 14px;
-  color: #212529;
+  color: #212529d0;
   background-color: #fff;
   line-height: 26px;
   font-weight: 300;
@@ -596,4 +596,26 @@ input[type=search]:focus {
   background-position: 68% 50%;
   background-repeat: no-repeat;
   transition: 0.5s;
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none;
 }
